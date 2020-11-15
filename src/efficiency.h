@@ -11,8 +11,8 @@ class Efficiency : public PhiGenerator {
 public:
   Efficiency() : PhiGenerator(){};
   ~Efficiency() override = default;
-  bool IsMissed( double phi ){
-    auto prob = GetProbability( phi );
+  bool IsMissed( double phi, double pT ){
+    auto prob = GetProbability( phi, pT );
     auto p = rnd_engine_(gen_);
     return p > prob;
   }
@@ -22,7 +22,13 @@ public:
 
 protected:
   double efficiency_amplitude_{0.7};
-  double GetProbability(double num) override { return 0.7*( 1.0 + 2*v1*cos(num) + 2*v2*cos(num) ); }
+  double GetProbability(double phi, double pT) override {
+    double v1_pT = v1_slope*pT;
+    double v2_pT = v2_slope*pT;
+    double prob;
+    prob = 0.7*( 1.0 + 2* v1_pT *cos(phi) + 2* v2_pT *cos(phi) );
+    return prob;
+  }
 };
 
 #endif // TOYMC_SRC_EFFICIENCY_H_

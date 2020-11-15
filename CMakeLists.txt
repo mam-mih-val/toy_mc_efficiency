@@ -19,5 +19,5 @@ if (ROOT_USE_FILE)
     include(${ROOT_USE_FILE})
 endif()
 
-add_executable(generate src/generate.cc src/generator.cc src/phi_generator.cc src/efficiency.cc)
+add_executable(generate src/generate.cc src/generator.cc src/phi_generator.cc src/efficiency.cc src/pt_generator.cc)
 target_link_libraries(generate ${ROOT_LIBRARIES})
