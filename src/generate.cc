@@ -29,8 +29,8 @@ int main(){
   efficiency.SetV2Slope(e2_slope);
   PtGenerator pt_generator;
 
-  auto v1_true = new TProfile( "v1_true", ";pT;v_{1}", 10, 0.0, 5.0 );
-  auto v1_measured = new TProfile( "v1_measured", ";pT;v_{1}", 10, 0.0, 5.0 );
+  auto v1_true = new TProfile( "v1_true", "true;pT;v_{1}", 10, 0.0, 5.0 );
+  auto v1_measured = new TProfile( "v1_measured", "measured;pT;v_{1}", 10, 0.0, 5.0 );
 
   for( int i=0; i< n_iterations; ++i ){
     pT = pt_generator.GetNumber();
@@ -43,7 +43,7 @@ int main(){
   }
 
   auto n_bins = v1_measured->GetXaxis()->GetNbins();
-  auto v1_corrected = new TH1F( "v1_corrected", ";pT;v_{1}", 10, 0.0, 5.0 );
+  auto v1_corrected = new TH1F( "v1_corrected", "corrected;pT;v_{1}", 10, 0.0, 5.0 );
   for( int i=1; i<=n_bins; ++i ){
     auto mean = v1_measured->GetBinContent(i);
     auto rel_err = v1_measured->GetBinError(i) / mean;
