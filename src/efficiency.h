@@ -22,7 +22,7 @@ public:
 
 protected:
   double efficiency_amplitude_{0.7};
-  double GetProbability(double num) override { return 0.7*( 1.0 + 2*v1*cos(num) ); }
+  double GetProbability(double num) override { return 0.7*( 1.0 + 2*v1*cos(num) + 2*v2*cos(num) ); }
 };
 
 #endif // TOYMC_SRC_EFFICIENCY_H_
